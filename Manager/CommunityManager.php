@@ -38,6 +38,7 @@ class CommunityManager
     const EVENT_CONFIRMED = 'sulu.community.confirmed';
     const EVENT_PASSWORD_FORGOT = 'sulu.community.password_forgot';
     const EVENT_PASSWORD_RESETED = 'sulu.community.password_reseted';
+    const EVENT_COMPLETED = 'sulu.community.completed';
 
     /**
      * @var array
@@ -184,6 +185,27 @@ class CommunityManager
         // Event
         $event = new CommunityEvent($user, $this->config);
         $this->eventDispatcher->dispatch(self::EVENT_REGISTERED, $event);
+
+        return $user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return User
+     */
+    public function completion($user)
+    {
+        // TODO use user mmanager
+        $contact = $user->getContact();
+
+        $this->entityManager->persist($contact);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        // Event
+        $event = new CommunityEvent($user, $this->config);
+        $this->eventDispatcher->dispatch(self::EVENT_COMPLETED, $event);
 
         return $user;
     }
