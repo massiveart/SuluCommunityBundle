@@ -14,7 +14,6 @@ namespace Sulu\Bundle\CommunityBundle\DependencyInjection\CompilerPass;
 use Sulu\Bundle\CommunityBundle\DependencyInjection\Configuration;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
